@@ -24,13 +24,10 @@ RUN cd /tmp &&\
   cd ruby-install-0.6.0/ &&\
   make install
 
-# Install MRI Ruby
-RUN ruby-install ruby 2.3.0
+# Install MRI Ruby 2.3.0 to /usr/local
+RUN ruby-install --system ruby 2.3.0
 
-# Add Ruby binaries to $PATH
-ENV PATH /opt/rubies/ruby-2.3.0/bin:$PATH
-
-# Add options to gemrc
+# Do not install gem's documentation
 RUN echo "install: --no-document\nupdate: --no-document" > ~/.gemrc
 
 # Install bundler and pry
